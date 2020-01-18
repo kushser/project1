@@ -1,6 +1,101 @@
-body{
-    background: green;
+* {
+    box-sizing: border-box;
 }
+
+body{
+    background: #F8F8F8;
+    margin: 0;
+    font-family: 'Ubuntu', sans-serif;
+}
+/* =================
+Typography
+================= */
 h1{
-    color: red;
+    color: #143774;
+    font-size: 3rem;
+    font-weight: bold;
+}
+/* =================
+Layout
+================= */
+.container {
+    width: 90%;
+    max-width: 900px;
+    margin: 0 auto;
+}
+.container-flex {
+    display: flex;
+    justify-content: space-around;
+}
+header {
+    text-align: center;
+    padding: 3em 0;
+}
+nav ul {
+
+
+    list-style: none;
+    display: flex;
+    justify-content: flex-end;
+}
+
+nav li {
+
+    margin: 0 1rem;
+}
+
+nav a {
+    text-decoration: none;
+    color: #707070;
+    font-weight: 700;
+    padding: 1rem 1.75rem;
+    background: #FFE600;
+    border-radius: 5px;
+}
+
+nav a:hover,
+nav a:focus
+{
+    background: #143774;
+    color: white;
+}
+.btn-yellow {
+    display: inline-block;
+    padding: 1rem 3rem;
+    background: #FFE600;
+    color: #707070;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.btn-yellow:hover {
+    background: #143774;
+    color: white;
+}
+
+.hidden {
+    display: none;
+}
+
+@media (max-width: 500px) {
+    .container-flex {
+        flex-direction: column;
+        align-items: center;
+    }
+    .btn-yellow {
+        width: 50%;
+        margin: 1rem 0;
+        text-align: center;
+    }
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+        padding-left: 0;
+    }
+
+    nav li {
+        margin: 1.5rem 0;
+    }
+
 }
