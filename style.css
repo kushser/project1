@@ -78,6 +78,21 @@ nav a:focus
     display: none;
 }
 
+/* =================
+   form
+   ================= */
+
+.singup,
+.singin
+{
+    border: 3px #F18119 solid;
+    width: 80%;
+    max-width: 300px;
+}
+
+input {
+    width: 100%;
+}
 @media (max-width: 500px) {
     .container-flex {
         flex-direction: column;

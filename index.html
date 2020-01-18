@@ -21,7 +21,38 @@
     <a href="#" class="btn-yellow">Sing Up</a>
     <a href="#" class="btn-yellow">Log In</a>
 </div>
-
+<section class="container">
+    <h3>Sign Up</h3>
+    <form class="singup" action="#" method="post">
+        <label for="fname">First Name:</label>
+        <input id="fname" type="text" required placeholder="Enter your first name">
+        <br>
+        <label for="lname">Last Name:</label>
+        <input id="lname" type="text" required placeholder="Enter your last name">
+        <br>
+        <label for="email">Email:</label>
+        <input id="email" type="email" required placeholder="email">
+        <br>
+        <label for="pass">Password:</label>
+        <input id="pass" type="password" required placeholder="Enter your first name">
+        <br>
+        <label for="terms"> <input type="checkbox" name="use" id="terms"> I agree to the Terms of use</label>
+        <br>
+        <button class="btn btn-primary" type="submit">Sign UP</button>
+    </form>
+</section>
+<section class="container">
+    <h3>Sign In</h3>
+    <form  class="singin" action="#" method="post">
+        <label for="email">Email:</label>
+        <input id="inemail" type="email" required placeholder="email">
+        <br>
+        <label for="pass">Password:</label>
+        <input id="inpass" type="password" required placeholder="Enter your first name">
+        <br>
+        <button class="btn btn-primary" type="submit">Sign In</button>
+    </form>
+</section>
 <script src="script.js"></script>
 </body>
 </html>
