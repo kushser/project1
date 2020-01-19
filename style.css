@@ -26,6 +26,7 @@ Layout
 .container-flex {
     display: flex;
     justify-content: space-around;
+;
 }
 header {
     text-align: center;
@@ -64,7 +65,9 @@ nav li:focus
 {
     transform: scale(1.1);
 }
-.btn-orange {
+.btn-orange__up,
+.btn-orange__in
+{
     display: inline-block;
     padding: 1rem 3rem;
     background-image: linear-gradient(to left, #FF713B, #FFA51D);
@@ -78,7 +81,9 @@ nav li:focus
 
 }
 
-.btn-orange:hover {
+.btn-orange__up:hover,
+.btn-orange__in:hover
+{
     transform: scale(1.1);
 
 }
@@ -107,6 +112,8 @@ nav li:focus
 .singup,
 .singin{
     border-radius: 5px;
+    margin-top: 4rem;
+    padding: 1rem;
 }
 label{
     margin-bottom: 0.5em;

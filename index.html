@@ -8,54 +8,21 @@
 <body>
 <header>
     <div class="container">
-<nav class="nav-list">
-    <ul>
-        <li class="nav-list-item "><a class="link-setting" href="#">Account settings</a></li>
-        <li class="nav-list-item "><a class="link-out" href="#">Log out</a></li>
-    </ul>
-</nav>
-<h1>To do list</h1>
-    </div>
+    <nav class="nav-list">
+        <ul>
+            <li class="nav-list-item "><a class="link-setting" href="#">Account settings</a></li>
+            <li class="nav-list-item "><a class="link-out" href="#">Log out</a></li>
+        </ul>
+    </nav>
+    <h1>To do list</h1>
+</div>
 </header>
 <div class="container container-flex">
-    <a href="#" class="btn-orange">Sing Up</a>
-    <a href="#" class="btn-orange">Log In</a>
+    <a href="#" class="btn-orange__up">Sing Up</a>
+    <a href="#" class="btn-orange__in">Log In</a>
 </div>
-
-<section class="container form-box hidden">
-    <form  class="singin" action="#" method="post">
-        <h3>Sign In</h3>
-        <label for="inemail">Email:</label>
-        <input id="inemail" type="email" required placeholder="email">
-        <br>
-        <label for="inpass">Password:</label>
-        <input id="inpass" type="password" required placeholder="Enter your first name">
-        <br>
-        <button class="btn btn-primary" type="submit">Sign In</button>
-    </form>
-</section>
 <div class="modal-overlay hidden">
-    <span class="modal-overlay-close">&times;</span>
-    <section class="container form-box">
-        <form class="singup" action="#" method="post">
-            <h3>Sign Up</h3>
-            <label for="fname">First Name:</label>
-            <input id="fname" type="text" required placeholder="Enter your first name">
-            <br>
-            <label for="lname">Last Name:</label>
-            <input id="lname" type="text" required placeholder="Enter your last name">
-            <br>
-            <label for="email">Email:</label>
-            <input id="email" type="email" required placeholder="email">
-            <br>
-            <label for="pass">Password:</label>
-            <input id="pass" type="password" required placeholder="Create your password">
-            <br>
-            <label for="terms"> <input type="checkbox" name="use" id="terms"> I agree to the Terms of use</label>
-            <br>
-            <button class="btn btn-primary" type="submit">Sign UP</button>
-        </form>
-    </section>
+
 </div>
 <script src="script.js"></script>
 </body>
