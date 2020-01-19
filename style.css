@@ -40,38 +40,47 @@ nav ul {
 }
 
 nav li {
-
+    transform: scale(1);
+    transition: transform 250ms;
     margin: 0 1rem;
 }
 
 nav a {
     text-decoration: none;
-    color: #707070;
+    transform: scale(1);
+    transition: transform 250ms;
+    color: white;
     font-weight: 700;
     padding: 1rem 1.75rem;
-    background: #FFE600;
+    background-image: linear-gradient(to left, #FF713B, #FFA51D);
     border-radius: 5px;
+    text-transform: uppercase;
 }
 
 nav a:hover,
-nav a:focus
+nav a:focus,
+nav li:hover,
+nav li:focus
 {
-    background: #143774;
-    color: white;
+    transform: scale(1.1);
 }
-.btn-yellow {
+.btn-orange {
     display: inline-block;
     padding: 1rem 3rem;
-    background: #FFE600;
-    color: #707070;
+    background-image: linear-gradient(to left, #FF713B, #FFA51D);
+    transform: scale(1);
+    transition: transform 250ms;
+    color: white;
     font-weight: bold;
     text-decoration: none;
     border-radius: 5px;
+    text-transform: uppercase;
+
 }
 
-.btn-yellow:hover {
-    background: #143774;
-    color: white;
+.btn-orange:hover {
+    transform: scale(1.1);
+
 }
 
 .hidden {
@@ -81,18 +90,102 @@ nav a:focus
 /* =================
    form
    ================= */
-
+.form-box {
+ margin-top: 1rem
+;
+}
 .singup,
-.singin
+.singin, h3
 {
-    border: 3px #F18119 solid;
     width: 80%;
     max-width: 300px;
-}
+    background: #F8F8F8;
+    text-align: center;
+    margin: 0 auto;
 
+}
+.singup,
+.singin{
+    border-radius: 5px;
+}
+label{
+    margin-bottom: 0.5em;
+    text-align: center;
+}
+input,.btn
+{
+    width: 90%;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: .5em;
+    margin-bottom: .5em;
+}
+.btn{
+    padding: 1rem 3rem;
+    text-transform: uppercase;
+    font-weight: 900;
+    letter-spacing: 1px;
+    border: 0;
+    cursor: pointer;
+}
+.btn-primary {
+    background: linear-gradient(#ff713b, #ffa51d);
+    transform: scale(1);
+    transition: transform 250ms;
+    color: white;
+}
+.btn-primary:hover,
+.btn-primary:focus {
+    transform: scale(1.1);
+}
 input {
+    font-family: inherit;
+    text-align: inherit;
+    margin-bottom: .75em;
+    padding: .25em;
+    border: 1px solid #404040;
+    border-radius: 5px;
+    transform: scale(1);
+    transition: transform 250ms;
+}
+input:focus {
+    transform: scale(1.1);
+}
+input[type=checkbox] {
+    zoom: 1.5;
     width: 100%;
 }
+/* =================
+   modal window
+   ================= */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+
+    overflow: auto;
+
+    text-align: center;
+
+    background: rgba(0, 0, 0, 0.8);
+}
+.modal-overlay-close {
+    position: absolute;
+    top: -5px;
+    right: 0;
+
+    padding: 0 10px;
+
+    font-size: 45px;
+    text-align: center;
+    color: #ffffff;
+
+    cursor: pointer;
+}
+
 @media (max-width: 500px) {
     .container-flex {
         flex-direction: column;
