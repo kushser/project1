@@ -1,8 +1,18 @@
-let modal = document.querySelector(".modal-overlay");
-const btnSignUp = document.querySelector(".btn-orange__up");
-const btnSignIn = document.querySelector(".btn-orange__in");
-const logIn = true;
-const nav = document.querySelector(".nav-list");
+const mainButtons =
+    `
+    <a href="#" class="btn-orange__up">Sing Up</a>
+    <a href="#" class="btn-orange__in">Log In</a>
+    `;
+const navTamplate =
+    ` 
+    <nav class="nav-list">
+        <ul>
+            <li class="nav-list-item "><a class="link-setting" href="#">Account settings</a></li>
+            <li class="nav-list-item "><a class="link-out" href="#">Log out</a></li>
+        </ul>
+    </nav>
+    <h1>To do list</h1>
+    `;
 const formSignUp =
     `<span class="modal-overlay-close">&times;</span>
      <section class="container form-box">
@@ -41,6 +51,31 @@ const formSingIn =
        </form>
 </section>
     `;
+
+const logIn = false;
+//Create header
+const body = document.querySelector("body");
+const header = document.createElement("header");
+const contHeader =document.createElement("div");
+contHeader.className += "container";
+contHeader.innerHTML = navTamplate;
+header.appendChild(contHeader);
+body.appendChild(header);
+//Create main buttons
+const contMain = document.createElement("div");
+contMain.className += "container container-flex";
+contMain.innerHTML = mainButtons;
+body.appendChild(contMain);
+//Create modal container
+const contModal = document.createElement("div");
+contModal.className += "modal-overlay hidden";
+body.appendChild(contModal);
+console.log(contModal);
+//Event fot main buttons
+const modal = document.querySelector(".modal-overlay");
+const btnSignUp = document.querySelector(".btn-orange__up");
+const btnSignIn = document.querySelector(".btn-orange__in");
+const nav = document.querySelector(".nav-list");
 const onPopupEscPress =  (e) => {
     if (e.key === "Escape" || e.key === "Esc") {
         closePopUp();
