@@ -5,7 +5,7 @@ const mainButtons =
     `;
 const navTamplate =
     ` 
-    <nav class="nav-list">
+    <nav class="nav-list hidden">
         <ul>
             <li class="nav-list-item "><a class="link-setting" href="#">Account settings</a></li>
             <li class="nav-list-item "><a class="link-out" href="#">Log out</a></li>
@@ -30,7 +30,7 @@ const formSignUp =
             <label for="pass">Password:</label>
             <input id="pass" type="password" required placeholder="Create your password">
             <br>
-            <label for="terms"> <input type="checkbox" required name="use" id="terms"> I agree to the Terms of use</label>
+            <label for="terms"> <input type="checkbox" checked required name="use" id="terms"> I agree to the Terms of use</label>
             <br>
             <button class="btn btn-primary" type="submit">Sign UP</button>
         </form>
@@ -51,7 +51,7 @@ const formSingIn =
        </form>
 </section>
     `;
-
+let users ;
 const logIn = false;
 //Create header
 const body = document.querySelector("body");
@@ -81,6 +81,11 @@ const onPopupEscPress =  (e) => {
         closePopUp();
     }
 };
+const setUserStorage = (data) => {
+    let sUsers = JSON.stringify(data);
+    console.log (sUsers);
+    localStorage.setItem('users' , sUsers);
+};
 const closePopUp = () => {
     modal.classList.add("hidden");
     document.removeEventListener('keydown', onPopupEscPress);
@@ -93,11 +98,49 @@ const popUp = (e) => {
         const closeModal = document.querySelector(".modal-overlay-close");
         closeModal.addEventListener('click', closePopUp);
         document.addEventListener('keydown',onPopupEscPress);
+        const formUp = document.querySelector(".singup");
+        const firstNameForm = document.getElementById("fname");
+        const lastNameForm = document.getElementById("lname");
+        const emailUpForm = document.getElementById("email");
+        const passForm = document.getElementById("pass");
+
+        formUp.addEventListener("submit", function (e) {
+            e.preventDefault();
+           let user = {
+               firstName: firstNameForm.value,
+               lastName: lastNameForm.value,
+               email: emailUpForm.value,
+               password: passForm.value
+           };
+           users = JSON.parse(localStorage.getItem('users'));
+           if (users.length === 0){
+               users.push(user);
+               console.log("not users");
+               setUserStorage(users);
+               closePopUp();
+           } else {
+               users = JSON.parse(localStorage.getItem('users'));
+            users.push(user);
+            setUserStorage(users);
+            closePopUp();
+            console.log (JSON.parse(localStorage.getItem('users')));
+            console.log("user exist");
+
+           }
+
+        });
+       // console.log(errorMsg);
     } else if (e.target === btnSignIn){
         modal.innerHTML = formSingIn;
         const closeModal = document.querySelector(".modal-overlay-close");
         closeModal.addEventListener('click', closePopUp);
         document.addEventListener('keydown',onPopupEscPress);
+        const formIn = document.querySelector(".singin");
+        formIn.addEventListener("submit", function (e) {
+            e.preventDefault();
+            console.log(e);
+        });
+
     }
 };
 if(logIn){

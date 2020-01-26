@@ -162,6 +162,10 @@ input[type=checkbox] {
     zoom: 1.5;
     width: 100%;
 }
+.error{
+    background: red;
+    color: black;
+}
 /* =================
    modal window
    ================= */
