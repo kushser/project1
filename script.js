@@ -42,10 +42,10 @@ const formSingIn =
        <form  class="singin" action="#" method="post">
         <h3>Sign In</h3>
         <label for="inemail">Email:</label>
-        <input id="inemail" type="email" required placeholder="email">
+        <input id="inemail" type="email" required placeholder="Enter your email">
         <br>
         <label for="inpass">Password:</label>
-        <input id="inpass" type="password" required placeholder="Enter your first name">
+        <input id="inpass" type="password" required placeholder="Enter your password">
         <br>
         <button class="btn btn-primary" type="submit">Sign In</button>
        </form>
@@ -138,7 +138,10 @@ const popUp = (e) => {
         const formIn = document.querySelector(".singin");
         formIn.addEventListener("submit", function (e) {
             e.preventDefault();
-            console.log(e);
+            users = JSON.parse(localStorage.getItem('users'));
+
+                console.log(users);
+            closePopUp();
         });
 
     }
