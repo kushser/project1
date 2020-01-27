@@ -39,7 +39,7 @@ const formSignUp =
 const formSingIn =
     `<span class="modal-overlay-close">&times;</span>
     <section class="container form-box">
-       <form  class="singin" action="#" method="post">
+       <form  class="singin" action="#" method="post" novalidate>
         <h3>Sign In</h3>
         <label for="inemail">Email:</label>
         <input id="inemail" type="email" required placeholder="Enter your email">
@@ -47,7 +47,7 @@ const formSingIn =
         <label for="inpass">Password:</label>
         <input id="inpass" type="password" required placeholder="Enter your password">
         <br>
-        <button class="btn btn-primary" type="submit">Sign In</button>
+        <button id ="inbtn" class="btn btn-primary" type="submit">Sign In</button>
        </form>
 </section>
     `;
@@ -113,7 +113,8 @@ const popUp = (e) => {
                password: passForm.value
            };
            users = JSON.parse(localStorage.getItem('users'));
-           if (users.length === 0){
+           if (!users){
+               users = [];
                users.push(user);
                console.log("not users");
                setUserStorage(users);
@@ -135,14 +136,29 @@ const popUp = (e) => {
         const closeModal = document.querySelector(".modal-overlay-close");
         closeModal.addEventListener('click', closePopUp);
         document.addEventListener('keydown',onPopupEscPress);
-        const formIn = document.querySelector(".singin");
-        formIn.addEventListener("submit", function (e) {
+        //const formIn = document.querySelector(".singin");
+        const emailIn = document.getElementById("inemail");
+        //const passIn = document.getElementById("inpass");
+        const btnIn =document.getElementById("inbtn");
+        btnIn.addEventListener("click", function (e) {
             e.preventDefault();
-            users = JSON.parse(localStorage.getItem('users'));
+            let usersData = JSON.parse(localStorage.getItem('users'));
+            for(const u of usersData){
+                console.log(u.email);
+                if (u.email === emailIn.value){
+                    console.log("email is right");
+                    //formIn.addEventListener("submit", function (e) {
+                    //    e.preventDefault();
+                     //   closePopUp();
+                    //});
+                    closePopUp();
+                }else {
+                    emailIn.setCustomValidity("Enter current email");
+                }
+            }
+        } )
 
-                console.log(users);
-            closePopUp();
-        });
+
 
     }
 };
