@@ -165,6 +165,7 @@ input[type=checkbox] {
 .error{
     background: red;
     color: black;
+    padding: 1em;
 }
 /* =================
    modal window

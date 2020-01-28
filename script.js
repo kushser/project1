@@ -48,6 +48,7 @@ const formSingIn =
         <input id="inpass" type="password" required placeholder="Enter your password">
         <br>
         <button id ="inbtn" class="btn btn-primary" type="submit">Sign In</button>
+        <p class="error hidden"></p>
        </form>
 </section>
     `;
@@ -90,6 +91,7 @@ const closePopUp = () => {
     modal.classList.add("hidden");
     document.removeEventListener('keydown', onPopupEscPress);
 };
+
 const popUp = (e) => {
     e.preventDefault();
     modal.classList.remove("hidden");
@@ -136,27 +138,83 @@ const popUp = (e) => {
         const closeModal = document.querySelector(".modal-overlay-close");
         closeModal.addEventListener('click', closePopUp);
         document.addEventListener('keydown',onPopupEscPress);
-        //const formIn = document.querySelector(".singin");
+        const formIn = document.querySelector(".singin");
         const emailIn = document.getElementById("inemail");
-        //const passIn = document.getElementById("inpass");
+        const passIn = document.getElementById("inpass");
         const btnIn =document.getElementById("inbtn");
+        const err = document.querySelector(".error");
+        const closeErr = () => {
+            err.innerHTML = "";
+            err.className ="error hidden";
+
+        };
         btnIn.addEventListener("click", function (e) {
             e.preventDefault();
             let usersData = JSON.parse(localStorage.getItem('users'));
+            emailIn.addEventListener("input",closeErr);
+            passIn.addEventListener("input", closeErr);
             for(const u of usersData){
-                console.log(u.email);
-                if (u.email === emailIn.value){
-                    console.log("email is right");
-                    //formIn.addEventListener("submit", function (e) {
-                    //    e.preventDefault();
-                     //   closePopUp();
-                    //});
-                    closePopUp();
-                }else {
-                    emailIn.setCustomValidity("Enter current email");
+                console.log(u);
+                if ( emailIn.value === u.email) {
+                    if (u.email === emailIn.value && u.password === passIn.value){
+                        console.log("email is right");
+
+                        closePopUp();
+                    }else if (u.email === emailIn.value && u.password !== passIn.value) {
+                        err.innerHTML = "Enter current password";
+                        err.className ="error";
+                        console.log("bad password");
+
+                    }
+
+                }else{
+                    if (emailIn.value !== u.email ) {
+                        err.innerHTML = "This user is not registered";
+                        err.className ="error";
+                        console.log("not user");
+
+                    }else if (!emailIn.validity.valid){
+
+                        err.innerHTML = "Enter current email";
+                        err.className ="error";
+                        console.log("bad email");
+
+                    }else if (!passIn.validity.valid){
+                        err.innerHTML = "Enter current password";
+                        err.className ="error";
+                        console.log("bad password");
+
+                    }else {
+                        err.innerHTML = "Enter current data";
+                        err.className ="error";
+                        console.log("bad data");
+                    }
+
                 }
+
             }
-        } )
+
+
+
+        } );
+
+        formIn.addEventListener("submit", function (e) {
+
+            e.preventDefault();
+
+
+
+             closePopUp();
+            });
+
+
+
+
+
+
+
+
+
 
 
 
