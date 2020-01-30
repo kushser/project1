@@ -52,7 +52,7 @@ const formSingIn =
        </form>
 </section>
     `;
-let users ;
+let users =JSON.parse(localStorage.getItem('users')) || [];
 const logIn = false;
 //Create header
 const body = document.querySelector("body");
@@ -114,15 +114,16 @@ const popUp = (e) => {
                email: emailUpForm.value,
                password: passForm.value
            };
-           users = JSON.parse(localStorage.getItem('users'));
-           if (!users){
-               users = [];
+           //users = JSON.parse(localStorage.getItem('users'));
+           if (users.length === 0) {
+               user.id = 0;
                users.push(user);
                console.log("not users");
                setUserStorage(users);
                closePopUp();
            } else {
-               users = JSON.parse(localStorage.getItem('users'));
+               //users = JSON.parse(localStorage.getItem('users'));
+               user.id = users.length;
             users.push(user);
             setUserStorage(users);
             closePopUp();
@@ -141,14 +142,16 @@ const popUp = (e) => {
         const formIn = document.querySelector(".singin");
         const emailIn = document.getElementById("inemail");
         const passIn = document.getElementById("inpass");
-        const btnIn =document.getElementById("inbtn");
+       // const btnIn =document.getElementById("inbtn");
         const err = document.querySelector(".error");
         const closeErr = () => {
             err.innerHTML = "";
             err.className ="error hidden";
 
         };
-        btnIn.addEventListener("click", function (e) {
+        emailIn.addEventListener("input",closeErr);
+        passIn.addEventListener("input", closeErr);
+       /* btnIn.addEventListener("click", function (e) {
             e.preventDefault();
             let usersData = JSON.parse(localStorage.getItem('users'));
             emailIn.addEventListener("input",closeErr);
@@ -196,15 +199,40 @@ const popUp = (e) => {
 
 
 
-        } );
+        } );*/
 
         formIn.addEventListener("submit", function (e) {
 
             e.preventDefault();
+            let usersData = JSON.parse(localStorage.getItem('users'));
+            if (!emailIn.validity.valid){
 
+                err.innerHTML = "Enter current email";
+                err.className ="error";
+                console.log("bad email");
 
+            } else {
+                for (const u of usersData) {
+                    console.log(u);
+                    if (emailIn.value === u.email) {
+                        if (u.email === emailIn.value && u.password === passIn.value) {
+                            console.log("email is right");
+                            closePopUp();
+                            break;
 
-             closePopUp();
+                        } else if (u.email === emailIn.value && u.password !== passIn.value) {
+                            err.innerHTML = "Enter current password";
+                            err.className = "error";
+                            console.log("bad password");
+                            break;
+                        }
+                    } else {
+                        err.innerHTML = "This user is not registered";
+                        err.className = "error";
+                        console.log("not user");
+                    }
+                }
+            }
             });
 
 
