@@ -52,6 +52,19 @@ const formSingIn =
        </form>
 </section>
     `;
+const formNote = `
+   <div id="form-container">
+        <form id="form" autocomplete="off">
+          <input id="note-title" placeholder="Title" type="text">
+          <input id="note-text" placeholder="Take a note..." type="text">
+          <div id="form-buttons">
+            <button type="submit" id="submit-button">Submit</button>
+            <button type="button" id="form-close-button">Close</button>
+          </div>
+        </form>
+      </div>
+      <div id="notes"></div>
+`;
 let users =JSON.parse(localStorage.getItem('users')) || [];
 let logIn = false;
 //Create header
@@ -151,55 +164,6 @@ const popUp = (e) => {
         };
         emailIn.addEventListener("input",closeErr);
         passIn.addEventListener("input", closeErr);
-       /* btnIn.addEventListener("click", function (e) {
-            e.preventDefault();
-            let usersData = JSON.parse(localStorage.getItem('users'));
-            emailIn.addEventListener("input",closeErr);
-            passIn.addEventListener("input", closeErr);
-            for(const u of usersData){
-                console.log(u);
-                if ( emailIn.value === u.email) {
-                    if (u.email === emailIn.value && u.password === passIn.value){
-                        console.log("email is right");
-
-                        closePopUp();
-                    }else if (u.email === emailIn.value && u.password !== passIn.value) {
-                        err.innerHTML = "Enter current password";
-                        err.className ="error";
-                        console.log("bad password");
-
-                    }
-
-                }else{
-                    if (emailIn.value !== u.email ) {
-                        err.innerHTML = "This user is not registered";
-                        err.className ="error";
-                        console.log("not user");
-
-                    }else if (!emailIn.validity.valid){
-
-                        err.innerHTML = "Enter current email";
-                        err.className ="error";
-                        console.log("bad email");
-
-                    }else if (!passIn.validity.valid){
-                        err.innerHTML = "Enter current password";
-                        err.className ="error";
-                        console.log("bad password");
-
-                    }else {
-                        err.innerHTML = "Enter current data";
-                        err.className ="error";
-                        console.log("bad data");
-                    }
-
-                }
-
-            }
-
-
-
-        } );*/
 
         formIn.addEventListener("submit", function (e) {
 
@@ -220,6 +184,7 @@ const popUp = (e) => {
                             closePopUp();
                             logIn = true;
                             onLogged();
+                            createDashboard();
                             break;
 
                         } else if (u.email === emailIn.value && u.password !== passIn.value) {
@@ -250,21 +215,35 @@ const popUp = (e) => {
 
     }
 };
-function onLogged() {
+function onLogged () {
     if(logIn){
         nav.classList.remove("hidden");
     }
 }
-
+// create Dashboard
+function createDashboard () {
+    const containerDashboard = document.createElement("div");
+    containerDashboard.id = "dash-container";
+    containerDashboard.className += "container";
+    containerDashboard.innerHTML += formNote;
+    body.appendChild(containerDashboard);
+}
+// delete Dashboard
+function deleteDashboard () {
+    const dashboard = document.getElementById("dash-container");
+    dashboard.remove();
+}
 btnSignUp.addEventListener('click', popUp);
 btnSignIn.addEventListener('click', popUp);
 console.log(logIn);
 if(nav){
     const linkOut = document.querySelector(".link-out");
+
     console.log(linkOut);
     linkOut.addEventListener("click", function (e) {
      e.preventDefault();
      nav.classList.add("hidden");
+     deleteDashboard();
      logIn = false;
     })
 }
