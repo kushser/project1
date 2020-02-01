@@ -53,7 +53,7 @@ const formSingIn =
 </section>
     `;
 let users =JSON.parse(localStorage.getItem('users')) || [];
-const logIn = false;
+let logIn = false;
 //Create header
 const body = document.querySelector("body");
 const header = document.createElement("header");
@@ -218,6 +218,8 @@ const popUp = (e) => {
                         if (u.email === emailIn.value && u.password === passIn.value) {
                             console.log("email is right");
                             closePopUp();
+                            logIn = true;
+                            onLogged();
                             break;
 
                         } else if (u.email === emailIn.value && u.password !== passIn.value) {
@@ -248,9 +250,21 @@ const popUp = (e) => {
 
     }
 };
-if(logIn){
-    nav.classList.remove("hidden");
+function onLogged() {
+    if(logIn){
+        nav.classList.remove("hidden");
+    }
 }
+
 btnSignUp.addEventListener('click', popUp);
 btnSignIn.addEventListener('click', popUp);
-
+console.log(logIn);
+if(nav){
+    const linkOut = document.querySelector(".link-out");
+    console.log(linkOut);
+    linkOut.addEventListener("click", function (e) {
+     e.preventDefault();
+     nav.classList.add("hidden");
+     logIn = false;
+    })
+}

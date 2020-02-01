@@ -166,6 +166,7 @@ input[type=checkbox] {
     background: red;
     color: black;
     padding: 1em;
+    border-radius: 5px;
 }
 /* =================
    modal window
