@@ -58,8 +58,8 @@ const formNote = `
           <input id="note-title" placeholder="Title" type="text">
           <input id="note-text" placeholder="Take a note..." type="text">
           <div id="form-buttons">
-            <button type="submit" id="submit-button">Submit</button>
-            <button type="button" id="form-close-button">Close</button>
+            <button  class="btn btn-primary" type="submit" id="submit-button">Save</button>
+            <button class="btn btn-primary" type="button" id="form-close-button">Close</button>
           </div>
         </form>
       </div>

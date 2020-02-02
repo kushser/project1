@@ -218,6 +218,7 @@ input[type=checkbox] {
     border: none;
     margin: 1px;
     border-radius: 8px;
+    text-align: center;
     transition-duration: 0.218s;
     transition-property: background, border, opacity, box-shadow, transform;
     transition-timing-function: ease-in;
@@ -226,7 +227,9 @@ input[type=checkbox] {
 .form-open {
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
 }
-
+#form-buttons > button {
+    width: 50%;
+}
 @media (max-width: 500px) {
     .container-flex {
         flex-direction: column;
