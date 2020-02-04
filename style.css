@@ -15,6 +15,10 @@ h1{
     font-size: 3rem;
     font-weight: bold;
 }
+h2{
+    font-weight: bold;
+    text-align: center;
+}
 /* =================
 Layout
 ================= */
@@ -230,6 +234,12 @@ input[type=checkbox] {
 #form-buttons > button {
     width: 50%;
 }
+#note-create-button {
+   width: auto;
+    display: block;
+    margin: 0 auto;
+}
+
 @media (max-width: 500px) {
     .container-flex {
         flex-direction: column;

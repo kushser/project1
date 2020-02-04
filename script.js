@@ -53,8 +53,10 @@ const formSingIn =
 </section>
     `;
 const formNote = `
+   <h2>My To-Do Lists</h2>
+   <button class="btn btn-primary" type="button" id="note-create-button">Create notes</button>
    <div id="form-container">
-        <form id="form" autocomplete="off">
+        <form id="form" class="hidden" autocomplete="off">
           <input id="note-title" placeholder="Title" type="text">
           <input id="note-text" placeholder="Take a note..." type="text">
           <div id="form-buttons">
@@ -185,6 +187,7 @@ const popUp = (e) => {
                             logIn = true;
                             onLogged();
                             createDashboard();
+                            contMain.classList.add("hidden");
                             break;
 
                         } else if (u.email === emailIn.value && u.password !== passIn.value) {
@@ -227,7 +230,19 @@ function createDashboard () {
     containerDashboard.className += "container";
     containerDashboard.innerHTML += formNote;
     body.appendChild(containerDashboard);
+    const addNote = document.getElementById("note-create-button");
+    const formForAddNote = document.getElementById("form");
+    const closeFormNote = document.getElementById("form-close-button");
+    addNote.addEventListener("click", function (e) {
+        e.preventDefault();
+        formForAddNote.classList.remove("hidden");
+    });
+    closeFormNote.addEventListener("click", function (e) {
+        e.preventDefault();
+        formForAddNote.classList.add("hidden");
+    })
 }
+//openform
 // delete Dashboard
 function deleteDashboard () {
     const dashboard = document.getElementById("dash-container");
@@ -238,12 +253,23 @@ btnSignIn.addEventListener('click', popUp);
 console.log(logIn);
 if(nav){
     const linkOut = document.querySelector(".link-out");
-
     console.log(linkOut);
     linkOut.addEventListener("click", function (e) {
      e.preventDefault();
      nav.classList.add("hidden");
      deleteDashboard();
+     contMain.classList.remove("hidden");
      logIn = false;
-    })
+    });
+
 }
+/*if (logIn) {
+    const addNote = document.getElementById("note-create-button");
+    const formNote = document.getElementById("form");
+    console.log(addNote);
+    addNote.addEventListener("click", function (e) {
+        e.preventDefault();
+        console.log("click");
+        formNote.classList.remove("hidden");
+    });
+}*/
