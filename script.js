@@ -242,7 +242,6 @@ function createDashboard () {
         formForAddNote.classList.add("hidden");
     })
 }
-//openform
 // delete Dashboard
 function deleteDashboard () {
     const dashboard = document.getElementById("dash-container");
@@ -253,7 +252,6 @@ btnSignIn.addEventListener('click', popUp);
 console.log(logIn);
 if(nav){
     const linkOut = document.querySelector(".link-out");
-    console.log(linkOut);
     linkOut.addEventListener("click", function (e) {
      e.preventDefault();
      nav.classList.add("hidden");
