@@ -67,8 +67,13 @@ const formNote = `
       </div>
       <div id="notes"></div>
 `;
-let users =JSON.parse(localStorage.getItem('users')) || [];
+// data
+let users = JSON.parse(localStorage.getItem('users')) || [];
 let logIn = false;
+let notes = JSON.parse(localStorage.getItem('notes')) || [];
+let notesTitle = "";
+let notesText = "";
+let notesId = "";
 //Create header
 const body = document.querySelector("body");
 const header = document.createElement("header");
@@ -133,7 +138,6 @@ const popUp = (e) => {
            if (users.length === 0) {
                user.id = 0;
                users.push(user);
-               console.log("not users");
                setUserStorage(users);
                closePopUp();
            } else {
@@ -143,10 +147,7 @@ const popUp = (e) => {
             setUserStorage(users);
             closePopUp();
             console.log (JSON.parse(localStorage.getItem('users')));
-            console.log("user exist");
-
            }
-
         });
        // console.log(errorMsg);
     } else if (e.target === btnSignIn){
@@ -162,11 +163,9 @@ const popUp = (e) => {
         const closeErr = () => {
             err.innerHTML = "";
             err.className ="error hidden";
-
         };
         emailIn.addEventListener("input",closeErr);
         passIn.addEventListener("input", closeErr);
-
         formIn.addEventListener("submit", function (e) {
 
             e.preventDefault();
@@ -261,6 +260,7 @@ if(nav){
     });
 
 }
+console.log (notes, notesId, notesText, notesTitle);
 /*if (logIn) {
     const addNote = document.getElementById("note-create-button");
     const formNote = document.getElementById("form");

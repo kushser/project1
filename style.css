@@ -239,7 +239,35 @@ input[type=checkbox] {
     display: block;
     margin: 0 auto;
 }
+/* =================
+    notes
+   ================= */
+#notes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.note {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 16px;
+    width: 250px;
+    background-color: #fff;
+    border: 1px solid #d3d3d3;
+    box-sizing: border-box;
+    overflow: hidden;
+    position: relative;
+    border-radius: 8px;
+    transition-duration: 0.218s;
+    transition-property: background, border, opacity, box-shadow, transform;
+    transition-timing-function: ease-in;
+}
 
+.note:hover {
+    box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.302),
+    0 1px 3px 1px rgba(60, 64, 67, 0.149);
+}
 @media (max-width: 500px) {
     .container-flex {
         flex-direction: column;
