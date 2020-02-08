@@ -74,6 +74,7 @@ let notes = JSON.parse(localStorage.getItem('notes')) || [];
 let notesTitle = "";
 let notesText = "";
 let notesId = "";
+let userId;
 //Create header
 const body = document.querySelector("body");
 const header = document.createElement("header");
@@ -184,9 +185,11 @@ const popUp = (e) => {
                             console.log("email is right");
                             closePopUp();
                             logIn = true;
+                            userId = u.id;
                             onLogged();
                             createDashboard();
                             contMain.classList.add("hidden");
+                            //isUserLoged();
                             break;
 
                         } else if (u.email === emailIn.value && u.password !== passIn.value) {
@@ -203,17 +206,6 @@ const popUp = (e) => {
                 }
             }
             });
-
-
-
-
-
-
-
-
-
-
-
 
     }
 };
@@ -232,12 +224,18 @@ function createDashboard () {
     const addNote = document.getElementById("note-create-button");
     const formForAddNote = document.getElementById("form");
     const closeFormNote = document.getElementById("form-close-button");
+    const saveFormNote = document.getElementById("submit-button");
     addNote.addEventListener("click", function (e) {
         e.preventDefault();
         formForAddNote.classList.remove("hidden");
     });
     closeFormNote.addEventListener("click", function (e) {
         e.preventDefault();
+        formForAddNote.classList.add("hidden");
+    });
+    saveFormNote.addEventListener("click", function (e) {
+        e.preventDefault();
+        isUserLoged();
         formForAddNote.classList.add("hidden");
     })
 }
@@ -248,7 +246,6 @@ function deleteDashboard () {
 }
 btnSignUp.addEventListener('click', popUp);
 btnSignIn.addEventListener('click', popUp);
-console.log(logIn);
 if(nav){
     const linkOut = document.querySelector(".link-out");
     linkOut.addEventListener("click", function (e) {
@@ -260,14 +257,29 @@ if(nav){
     });
 
 }
-console.log (notes, notesId, notesText, notesTitle);
-/*if (logIn) {
-    const addNote = document.getElementById("note-create-button");
-    const formNote = document.getElementById("form");
-    console.log(addNote);
-    addNote.addEventListener("click", function (e) {
-        e.preventDefault();
-        console.log("click");
-        formNote.classList.remove("hidden");
-    });
-}*/
+//console.log (notes, notesId, notesText, notesTitle);
+function isUserLoged () {
+
+
+        const $notes = document.getElementById("notes");
+        const userNotes = {
+            title: notesTitle,
+            text : notesText,
+            idnotes: notesId
+        };
+        const newNote = {
+            idNotesUsers : userId,
+            listUserNotes: []
+        };
+        const hasNotes = notes.length > 0;
+        if(hasNotes){
+            console.log(hasNotes);
+        } else{
+            console.log(newNote, userNotes);
+            saveNotes();
+            $notes.innerHTML = `console.log(${newNote})`
+        }
+}
+function saveNotes() {
+    localStorage.setItem('notes', JSON.stringify(notes))
+}
