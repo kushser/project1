@@ -147,7 +147,7 @@ const popUp = (e) => {
             users.push(user);
             setUserStorage(users);
             closePopUp();
-            console.log (JSON.parse(localStorage.getItem('users')));
+            //console.log (JSON.parse(localStorage.getItem('users')));
            }
         });
        // console.log(errorMsg);
@@ -225,6 +225,7 @@ function createDashboard () {
     const formForAddNote = document.getElementById("form");
     const closeFormNote = document.getElementById("form-close-button");
     const saveFormNote = document.getElementById("submit-button");
+
     addNote.addEventListener("click", function (e) {
         e.preventDefault();
         formForAddNote.classList.remove("hidden");
@@ -237,7 +238,8 @@ function createDashboard () {
         e.preventDefault();
         isUserLoged();
         formForAddNote.classList.add("hidden");
-    })
+    });
+    render();
 }
 // delete Dashboard
 function deleteDashboard () {
@@ -262,24 +264,84 @@ function isUserLoged () {
 
 
         const $notes = document.getElementById("notes");
-        const userNotes = {
-            title: notesTitle,
-            text : notesText,
-            idnotes: notesId
-        };
-        const newNote = {
-            idNotesUsers : userId,
-            listUserNotes: []
-        };
-        const hasNotes = notes.length > 0;
+        const $noteTitle = document.getElementById("note-title");
+        const $noteText = document.getElementById("note-text");
+    let userNotes = {
+        idNotesUsers : userId,
+        listUserNotes:  []
+    };
+    for (const n of notes) {
+        if (n.idNotesUsers === userId) {
+            userNotes.listUserNotes = n.listUserNotes;
+            break;
+        }
+    }
+        const hasNotes = userNotes.listUserNotes.length > 0;
         if(hasNotes){
-            console.log(hasNotes);
+
+            for (const n of notes){
+               if (n.idNotesUsers === userId){
+                   userNotes.listUserNotes = n.listUserNotes;
+                    const saveNote = {
+                        title: $noteTitle.value,
+                        text : $noteText.value,
+                        idnotes: userNotes.listUserNotes.length > 0 ? userNotes.listUserNotes.length  : 0
+                    };
+                    userNotes.listUserNotes.push(saveNote);
+                    notes.push(userNotes);
+                    saveNotes();
+                    $notes.innerHTML = userNotes.listUserNotes.
+                    map( note => `
+               <div  class="note" data-id="${note.idnotes }">
+                   <div class="${note.title && "note-title"}">${note.title}</div>
+                   <div class="note-text">${note.text}</div>
+               </div>
+               `
+                    ).join("");
+
+                break;
+                }
+            }
         } else{
-            console.log(newNote, userNotes);
+            const newNote = {
+                title: $noteTitle.value,
+                text : $noteText.value,
+                idnotes: userNotes.listUserNotes.length > 0 ? userNotes.listUserNotes.length  : 0
+            };
+            userNotes.listUserNotes.push(newNote);
+            notes.push(userNotes);
             saveNotes();
-            $notes.innerHTML = `console.log(${newNote})`
+            $notes.innerHTML = userNotes.listUserNotes.
+            map( note => `
+               <div  class="note" data-id="${note.idnotes }">
+                   <div class="${note.title && "note-title"}">${note.title}</div>
+                   <div class="note-text">${note.text}</div>
+               </div>
+               `
+            ).join("");
+
+            //console.log(JSON.parse(localStorage.getItem('notes')));
         }
 }
 function saveNotes() {
     localStorage.setItem('notes', JSON.stringify(notes))
+}
+function render() {
+    const $notes = document.getElementById("notes");
+    let userNotesRender ={} ;
+    for (const n of notes){
+        if (n.idNotesUsers === userId){
+            userNotesRender.listUserNotes = n.listUserNotes;
+            userNotesRender.idNotesUsers = n.idNotesUsers;
+            $notes.innerHTML = userNotesRender.listUserNotes.
+            map( note => `
+               <div  class="note" data-id="${note.idnotes }">
+                   <div class="${note.title && "note-title"}">${note.title}</div>
+                   <div class="note-text">${note.text}</div>
+               </div>
+               `
+            ).join("");
+            break;
+        }
+    }
 }
