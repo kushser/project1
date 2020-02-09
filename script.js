@@ -73,7 +73,7 @@ let logIn = false;
 let notes = JSON.parse(localStorage.getItem('notes')) || [];
 let notesTitle = "";
 let notesText = "";
-let notesId = "";
+//let notesId = "";
 let userId;
 //Create header
 const body = document.querySelector("body");
@@ -229,6 +229,10 @@ function createDashboard () {
     addNote.addEventListener("click", function (e) {
         e.preventDefault();
         formForAddNote.classList.remove("hidden");
+        const $noteTitle = document.getElementById("note-title");
+        const $noteText = document.getElementById("note-text");
+        $noteTitle.value = notesTitle;
+        $noteText.value = notesText;
     });
     closeFormNote.addEventListener("click", function (e) {
         e.preventDefault();
@@ -240,6 +244,7 @@ function createDashboard () {
         formForAddNote.classList.add("hidden");
     });
     render();
+
 }
 // delete Dashboard
 function deleteDashboard () {
@@ -250,6 +255,7 @@ btnSignUp.addEventListener('click', popUp);
 btnSignIn.addEventListener('click', popUp);
 if(nav){
     const linkOut = document.querySelector(".link-out");
+
     linkOut.addEventListener("click", function (e) {
      e.preventDefault();
      nav.classList.add("hidden");
@@ -295,6 +301,13 @@ function isUserLoged () {
                <div  class="note" data-id="${note.idnotes }">
                    <div class="${note.title && "note-title"}">${note.title}</div>
                    <div class="note-text">${note.text}</div>
+                   <div class="toolbar">
+                      <img data-id=${
+                          note.idnotes
+                        } class="toolbar-delete" src="https://icon.now.sh/delete" alt="delete">
+                      <label for="done">Done</label>
+                      <input type="checkbox"  name="done" id="done">
+                   </div>
                </div>
                `
                     ).join("");
@@ -316,6 +329,13 @@ function isUserLoged () {
                <div  class="note" data-id="${note.idnotes }">
                    <div class="${note.title && "note-title"}">${note.title}</div>
                    <div class="note-text">${note.text}</div>
+                   <div class="toolbar">
+                      <img data-id=${
+                       note.idnotes
+                       } class="toolbar-delete" src="https://icon.now.sh/delete" alt="delete">
+                      <label for="done">Done</label>
+                      <input type="checkbox"  name="done" id="done">
+                   </div>
                </div>
                `
             ).join("");
@@ -338,10 +358,21 @@ function render() {
                <div  class="note" data-id="${note.idnotes }">
                    <div class="${note.title && "note-title"}">${note.title}</div>
                    <div class="note-text">${note.text}</div>
+                   <div class="toolbar">
+                      <img data-id=${
+                        note.idnotes
+                       } class="toolbar-delete" src="https://icon.now.sh/delete" alt="delete">
+                      <label for="done">Done</label>
+                      <input type="checkbox"  name="done" id="done">
+                   </div>
                </div>
                `
             ).join("");
             break;
         }
     }
+    $notes.addEventListener("click", function (e) {
+        //e.preventDefault();
+        console.log(e);
+    })
 }
