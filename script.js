@@ -298,7 +298,7 @@ function isUserLoged () {
                     saveNotes();
                     $notes.innerHTML = userNotes.listUserNotes.
                     map( note => `
-               <div  class="note" data-id="${note.idnotes }">
+               <div  class="note" data-id=${note.idnotes }>
                    <div class="${note.title && "note-title"}">${note.title}</div>
                    <div class="note-text">${note.text}</div>
                    <div class="toolbar">
@@ -326,7 +326,7 @@ function isUserLoged () {
             saveNotes();
             $notes.innerHTML = userNotes.listUserNotes.
             map( note => `
-               <div  class="note" data-id="${note.idnotes }">
+               <div  class="note" data-id=${note.idnotes }>
                    <div class="${note.title && "note-title"}">${note.title}</div>
                    <div class="note-text">${note.text}</div>
                    <div class="toolbar">
@@ -355,7 +355,7 @@ function render() {
             userNotesRender.idNotesUsers = n.idNotesUsers;
             $notes.innerHTML = userNotesRender.listUserNotes.
             map( note => `
-               <div  class="note" data-id="${note.idnotes }">
+               <div  class="note" data-id=${note.idnotes }>
                    <div class="${note.title && "note-title"}">${note.title}</div>
                    <div class="note-text">${note.text}</div>
                    <div class="toolbar">
@@ -371,8 +371,19 @@ function render() {
             break;
         }
     }
-    $notes.addEventListener("click", function (e) {
+   /* $notes.addEventListener("click", function (event) {
         //e.preventDefault();
-        console.log(e);
-    })
+        const $selectedNote = event.target.closest(".note");
+
+
+        console.log($selectedNote.dataset.id);
+    });*/
+    /*$notes.addEventListener("click", function (e) {
+        e.stopPropagation();
+        //console.log(e.target.matches('.toolbar-delete'));
+        if(e.target.matches('.toolbar-delete')){
+            const idDel = e.target.dataset.id;
+            console.log(idDel);
+        }
+    });*/
 }
