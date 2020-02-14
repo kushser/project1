@@ -294,7 +294,15 @@ function isUserLoged () {
                         idnotes: userNotes.listUserNotes.length > 0 ? userNotes.listUserNotes.length  : 0
                     };
                     userNotes.listUserNotes.push(saveNote);
-                    notes.push(userNotes);
+                    /*notes = notes.map(note =>
+                    note.idNotesUsers === userId ? note.listUserNotes = userNotes.listUserNotes : note
+                    );*/
+                   for (const n of notes) {
+                       if (n.idNotesUsers === userId) {
+                            n.listUserNotes = userNotes.listUserNotes;
+                           break;
+                       }
+                   }
                     saveNotes();
                     $notes.innerHTML = userNotes.listUserNotes.
                     map( note => `
