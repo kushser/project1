@@ -396,6 +396,29 @@ function render() {
             console.log(userNotesRender.listUserNotes);
             let newUserNotes = userNotesRender.listUserNotes.filter((note,index) => index !== Number(idDel));
             console.log(newUserNotes);
+            userNotesRender.listUserNotes = newUserNotes;
+            for (const n of notes) {
+                if (n.idNotesUsers === userId) {
+                    n.listUserNotes = userNotesRender.listUserNotes;
+                    break;
+                }
+            }
+            saveNotes();
+            $notes.innerHTML = userNotesRender.listUserNotes.
+            map( note => `
+               <div  class="note" data-id=${note.idnotes }>
+                   <div class="${note.title && "note-title"}">${note.title}</div>
+                   <div class="note-text">${note.text}</div>
+                   <div class="toolbar">
+                      <img data-id=${
+                note.idnotes
+                } class="toolbar-delete" src="https://icon.now.sh/delete" alt="delete">
+                      <label for="done">Done</label>
+                      <input type="checkbox"  name="done" id="done">
+                   </div>
+               </div>
+               `
+            ).join("");
         }
     });*/
 }
