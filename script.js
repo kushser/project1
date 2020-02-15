@@ -386,16 +386,19 @@ function render() {
 
         console.log($selectedNote.dataset.id);
     });*/
-   /* $notes.addEventListener("click", function (e) {
+   $notes.addEventListener("click", function (e) {
         e.stopPropagation();
         //console.log(e.target.matches('.toolbar-delete'));
         if(e.target.className ==="toolbar-delete"){
             const idDel = e.target.dataset.id;
             console.log(idDel);
-            let el = e.target;
             console.log(userNotesRender.listUserNotes);
             let newUserNotes = userNotesRender.listUserNotes.filter((note,index) => index !== Number(idDel));
             console.log(newUserNotes);
+            //write new id for user notes
+            for(let i = 0; i < newUserNotes.length; i += 1){
+               newUserNotes[i].idnotes = i;
+            }
             userNotesRender.listUserNotes = newUserNotes;
             for (const n of notes) {
                 if (n.idNotesUsers === userId) {
@@ -420,5 +423,5 @@ function render() {
                `
             ).join("");
         }
-    });*/
+    });
 }
