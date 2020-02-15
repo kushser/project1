@@ -386,12 +386,16 @@ function render() {
 
         console.log($selectedNote.dataset.id);
     });*/
-    /*$notes.addEventListener("click", function (e) {
+   /* $notes.addEventListener("click", function (e) {
         e.stopPropagation();
         //console.log(e.target.matches('.toolbar-delete'));
-        if(e.target.matches('.toolbar-delete')){
+        if(e.target.className ==="toolbar-delete"){
             const idDel = e.target.dataset.id;
             console.log(idDel);
+            let el = e.target;
+            console.log(userNotesRender.listUserNotes);
+            let newUserNotes = userNotesRender.listUserNotes.filter((note,index) => index !== Number(idDel));
+            console.log(newUserNotes);
         }
     });*/
 }
